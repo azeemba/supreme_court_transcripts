@@ -21,19 +21,12 @@ jobs:
       run: python -m pip install -r requirements.txt
     - name: Fetch and update cases
       run: python update.py
-    - name: Commit changed files
+    - name: Commit and push changed files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add oyez/cases/*.json
         git add oyez/*.json
         git commit -m "Add more cases!" || true
-    - name: GitHub Push (master)
-      uses: ad-m/github-push-action@v.0.2.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: GitHub Push (auto-release)
-      uses: ad-m/github-push-action@v.0.2.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: auto-release
+        git push origin master
+        git push origin master:auto-release
