@@ -1,0 +1,22 @@
+name: AutoPublish
+on: [push]
+  # schedule:
+  #   - cron: "5 13 * * 6"
+  #  - cron: "0/5 * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Delete excess releases
+        uses: azeemba/delete-excess-releases@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          max_count: 3
