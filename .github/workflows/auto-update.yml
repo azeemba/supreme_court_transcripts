@@ -1,14 +1,14 @@
 name: AutoUpdate
 
-on: [push]
-  # schedule:
+on: 
+  schedule:
+    - cron: "0/5 * * * *"
   #  - cron: "5 12 * * 6"
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.8
@@ -26,6 +26,11 @@ jobs:
         git add oyez/cases/*.json
         git add oyez/*.json
         git diff --staged --quiet || git commit -m "Add more cases!"
-    # - name: GitHub Push
-    #  uses: ad-m/github-push-action@v.0.2.0
-
+    - name: GitHub Push (master)
+      uses: ad-m/github-push-action@v.0.2.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: GitHub Push (auto-release)
+      uses: ad-m/github-push-action@v.0.2.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
