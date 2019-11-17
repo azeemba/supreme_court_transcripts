@@ -1,4 +1,4 @@
-name: CI
+name: AutoUpdate
 
 on: [push]
   # schedule:
@@ -23,9 +23,9 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add oyez/case/*.json
+        git add oyez/cases/*.json
         git add oyez/*.json
-        git commit -m "Add more cases" 
+        git diff --staged --quiet || git commit -m "Add more cases!"
     # - name: GitHub Push
     #  uses: ad-m/github-push-action@v.0.2.0
 
