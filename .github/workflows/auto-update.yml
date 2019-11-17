@@ -11,12 +11,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: curl --help
-    - name: Run a multi-line script
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: python -m pip install -r requirements.txt
+    - name: Fetch and update cases
+      run: python update.py
+    - name: Commit changed files
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-    - name: GitHub Push
-      uses: ad-m/github-push-action@v.0.2.0
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add oyez/case/*.json
+        git add oyez/*.json
+        git commit -m "Add more cases" 
+    # - name: GitHub Push
+    #  uses: ad-m/github-push-action@v.0.2.0
 
