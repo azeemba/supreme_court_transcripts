@@ -11,9 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit: master
+          tag: github.sha
       - name: Delete excess releases
         uses: azeemba/delete-excess-releases@v1
         env:
