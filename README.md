@@ -1,4 +1,6 @@
-# US Supreme Court Annotated Transcripts (auto-updated)
+# Auto updating feature has been merged back into [walkerdb/supreme_court_transcripts](https://github.com/walkerdb/supreme_court_transcripts) so this fork is being archived.
+
+# US Supreme Court Annotated Transcripts ~~(auto-updated)~~
 
 A dataset containing structured data on court cases presided by the justices of the United States Supreme Court, with transcripts for (nearly) every oral argument they've heard, annotated with audio timestamps and speaker identifications.
 Includes links to digitized original audio from oral proceedings.
